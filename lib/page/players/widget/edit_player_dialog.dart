@@ -33,9 +33,6 @@ class _EditPlayerDialogState extends State<EditPlayerDialog> {
   @override
   Widget build(BuildContext context) {
     final appLocal = AppLocalizations.of(context)!;
-    if (!_newPlayer) {
-      _input = widget.player!.name;
-    }
     return AlertDialog(
       content: Form(
         key: _form,
@@ -60,7 +57,7 @@ class _EditPlayerDialogState extends State<EditPlayerDialog> {
             return null;
           },
           onChanged: (value) => _input = value,
-          onFieldSubmitted: (_) => _addPlayer,
+          onFieldSubmitted: (_) => _newPlayer ? _addPlayer() : _renamePlayer(),
         ),
       ),
       actions: [

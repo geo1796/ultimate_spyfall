@@ -51,4 +51,11 @@ class LocationsController extends GetxController {
     currentGroup.value = locationGroup;
     await _locationsService.setCurrent(locationGroup);
   }
+
+  Future<void> editLocationGroup(
+      String oldName, LocationGroup locationGroup) async {
+    final index = locationGroups.indexWhere((l) => l.name == oldName);
+    locationGroups[index] = locationGroup;
+    await _locationsService.setAll(locationGroups);
+  }
 }

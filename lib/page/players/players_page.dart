@@ -15,7 +15,8 @@ class PlayersPage extends StatelessWidget {
     final appLocal = AppLocalizations.of(context)!;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _onAddPlayer(context),
+        onPressed: () async => await showDialog(
+            context: context, builder: (_) => const EditPlayerDialog(null)),
         child: const Icon(
           Icons.add,
           color: Colors.white,
@@ -25,9 +26,5 @@ class PlayersPage extends StatelessWidget {
       drawer: const MyDrawer(),
       body: const PlayersList(),
     );
-  }
-
-  Future<void> _onAddPlayer(BuildContext ctx) async {
-    await showDialog(context: ctx, builder: (_) => const EditPlayerDialog(null));
   }
 }

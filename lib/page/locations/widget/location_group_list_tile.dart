@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../controller/locations_controller.dart';
 import '../../../model/location_group.dart';
+import '../../location_group_details/location_group_details_page.dart';
 
 class LocationGroupListTile extends StatelessWidget {
   const LocationGroupListTile(this.locationGroup, {super.key});
@@ -22,6 +23,11 @@ class LocationGroupListTile extends StatelessWidget {
                   : Icons.star_border)),
         ),
         title: Text(locationGroup.name),
+        trailing: IconButton(
+          icon: const Icon(Icons.edit),
+          onPressed: () => Get.toNamed(LocationGroupDetailsPage.route,
+              arguments: locationGroup),
+        ),
       ),
     );
   }

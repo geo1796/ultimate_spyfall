@@ -8,6 +8,7 @@ import '../service/player_service.dart';
 import 'controller/locations_controller.dart';
 import 'controller/theme_controller.dart';
 import 'page/home/home_page.dart';
+import 'page/location_group_details/location_group_details_page.dart';
 import 'page/location_group_form/location_group_form_page.dart';
 import 'page/locations/locations_page.dart';
 import 'page/players/players_page.dart';
@@ -71,6 +72,9 @@ class MyApp extends StatelessWidget {
             GetPage(
                 name: LocationGroupFormPage.route,
                 page: () => const LocationGroupFormPage()),
+            GetPage(
+                name: LocationGroupDetailsPage.route,
+                page: () => const LocationGroupDetailsPage()),
           ],
         ));
   }

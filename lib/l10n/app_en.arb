@@ -7,5 +7,6 @@
     "tooShort": "Too short",
     "alreadyUsed": "Already used",
     "cancel": "Cancel",
-    "newLocationGroup": "New list"
+    "newLocationGroup": "New list",
+    "location": "Location"
 }

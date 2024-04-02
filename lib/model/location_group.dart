@@ -20,6 +20,10 @@ class LocationGroup {
       locations: (json['locations'] as List).cast<String>(),
     );
   }
+
+  factory LocationGroup.copy(LocationGroup original) {
+    return LocationGroup(original.name, locations: original.locations);
+  }
 }
 
 final enDefaultLocationGroup = LocationGroup(
