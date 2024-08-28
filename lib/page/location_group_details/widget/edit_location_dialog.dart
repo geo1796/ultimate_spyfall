@@ -1,104 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/page/location_group_details/bindings/location_group_details_controller.dart';
 
-import '../../../controller/locations_controller.dart';
-import '../../../model/location_group.dart';
-
-class EditLocationDialog extends StatefulWidget {
+class EditLocationDialog extends StatelessWidget {
   const EditLocationDialog({
     super.key,
-    required this.locationGroup,
-    required this.location,
+    this.location,
   });
-  final LocationGroup locationGroup;
   final String? location;
 
-  @override
-  State<EditLocationDialog> createState() => _EditLocationDialogState();
-}
-
-class _EditLocationDialogState extends State<EditLocationDialog> {
-  final LocationsController _locationsController = Get.find();
-  final _form = GlobalKey<FormState>();
-  var _input = '';
-  late final bool _newLocation;
-
-  @override
-  void initState() {
-    if (widget.location != null) {
-      _newLocation = false;
-      _input = widget.location!;
-    } else {
-      _newLocation = true;
-    }
-    super.initState();
-  }
+  bool get isNewLocation => location == null;
 
   @override
   Widget build(BuildContext context) {
-    final appLocal = AppLocalizations.of(context)!;
+    final ctrl = Get.find<LocationGroupDetailsController>();
+
     return AlertDialog(
       content: Form(
-        key: _form,
+        key: ctrl.form,
         child: TextFormField(
           textInputAction: TextInputAction.done,
-          initialValue: _newLocation ? '' : widget.location!,
-          decoration: InputDecoration(labelText: appLocal.location),
+          initialValue: location ?? '',
+          decoration: InputDecoration(labelText: AppLocal.location),
           validator: (value) {
             if (value == null || value.length < 2) {
-              return appLocal.tooShort;
+              return AppLocal.tooShort;
             }
-            if (widget.locationGroup.locations.firstWhereOrNull(
+            if (ctrl.group.locations.firstWhereOrNull(
                     (l) => l.toLowerCase() == value.toLowerCase()) !=
                 null) {
-              if (_newLocation ||
-                  widget.location!.toLowerCase() != value.toLowerCase()) {
-                return appLocal.alreadyUsed;
+              if (isNewLocation ||
+                  location!.toLowerCase() != value.toLowerCase()) {
+                return AppLocal.alreadyUsed;
               }
             }
             return null;
           },
-          onChanged: (value) => _input = value,
-          onFieldSubmitted: (_) => _newLocation ? _addLocation() : _editLocation(),
+          onSaved: (value) => ctrl.data = value!,
+          onFieldSubmitted: (_) =>
+              isNewLocation ? ctrl.addLocation() : ctrl.editLocation(location!),
         ),
       ),
       actions: [
         TextButton(
-          onPressed: _newLocation ? _addLocation : _editLocation,
+          onPressed: isNewLocation
+              ? () => ctrl.addLocation()
+              : () => ctrl.editLocation(location!),
           child: const Text('Ok'),
         ),
         TextButton(
           onPressed: Get.back,
-          child: Text(appLocal.cancel),
+          child: Text(AppLocal.cancel),
         ),
       ],
     );
-  }
-
-  Future<void> _addLocation() async {
-    if (!_form.currentState!.validate()) {
-      return;
-    }
-    _form.currentState!.save();
-    final editedGroup = LocationGroup(widget.locationGroup.name,
-        locations: List.of([...widget.locationGroup.locations, _input]));
-    await _locationsController.editLocationGroup(
-        widget.locationGroup.name, editedGroup);
-    Get.back();
-  }
-
-  Future<void> _editLocation() async {
-    if (!_form.currentState!.validate()) {
-      return;
-    }
-    _form.currentState!.save();
-    final editedGroup = LocationGroup.copy(widget.locationGroup);
-    final index =
-        editedGroup.locations.indexWhere((l) => l == widget.location!);
-    editedGroup.locations[index] = _input;
-    await _locationsController.editLocationGroup(
-        widget.locationGroup.name, editedGroup);
-    Get.back();
   }
 }

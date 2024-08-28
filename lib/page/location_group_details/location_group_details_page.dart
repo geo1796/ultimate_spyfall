@@ -15,9 +15,7 @@ class LocationGroupDetailsPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async => await showDialog(
-            context: context,
-            builder: (_) => EditLocationDialog(
-                locationGroup: locationGroup, location: null)),
+            context: context, builder: (_) => const EditLocationDialog()),
         child: const Icon(
           Icons.add,
           color: Colors.white,

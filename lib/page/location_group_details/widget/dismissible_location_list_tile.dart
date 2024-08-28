@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/locations_controller.dart';
+import '../../../controller/location_controller.dart';
 import '../../../model/location_group.dart';
-import 'location_list_tile.dart';
+import 'location_list.dart';
 
 class DismissibleLocationListTile extends StatelessWidget {
   const DismissibleLocationListTile({
@@ -28,14 +28,14 @@ class DismissibleLocationListTile extends StatelessWidget {
           ),
         ),
         onDismissed: (_) async {
-          final LocationsController locationsController = Get.find();
+          final LocationController locationsController = Get.find();
           final editedGroup = LocationGroup(locationGroup.name, locations: [
             ...locationGroup.locations.where((l) => l != location)
           ]);
           await locationsController.editLocationGroup(
               locationGroup.name, editedGroup);
         },
-        child: LocationListTile(
+        child: LocationTile(
           location: location,
           locationGroup: locationGroup,
         ));

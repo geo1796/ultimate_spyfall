@@ -8,13 +8,6 @@ class ThemeController extends GetxController {
 
   @override
   void onInit() async {
-    // _prefs = await SharedPreferences.getInstance();
-    // if (_prefs.containsKey('darkMode')) {
-    //   final darkMode = _prefs.getBool('darkMode')!;
-    //   if (darkMode) {
-    //     themeMode = ThemeMode.dark;
-    //   }
-    // }
     if (_box.hasData('darkmode')) {
       final bool darkMode = _box.read('darkMode');
       if (darkMode) {

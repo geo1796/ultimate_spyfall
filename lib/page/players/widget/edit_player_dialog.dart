@@ -1,93 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/page/players/bindings/players_page_controller.dart';
 
-import '../../../controller/player_controller.dart';
 import '../../../model/player.dart';
 
-class EditPlayerDialog extends StatefulWidget {
-  const EditPlayerDialog(this.player, {super.key});
+class EditPlayerDialog extends StatelessWidget {
+  const EditPlayerDialog({
+    super.key,
+    this.player,
+  });
   final Player? player;
 
-  @override
-  State<EditPlayerDialog> createState() => _EditPlayerDialogState();
-}
-
-class _EditPlayerDialogState extends State<EditPlayerDialog> {
-  final PlayerController _playerController = Get.find();
-  final _form = GlobalKey<FormState>();
-  var _input = '';
-  late final bool _newPlayer;
-
-  @override
-  void initState() {
-    if (widget.player != null) {
-      _newPlayer = false;
-      _input = widget.player!.name;
-    } else {
-      _newPlayer = true;
-    }
-    super.initState();
-  }
+  bool get isNewPlayer => player == null;
 
   @override
   Widget build(BuildContext context) {
-    final appLocal = AppLocalizations.of(context)!;
+    final ctrl = Get.find<PlayersPageController>();
     return AlertDialog(
       content: Form(
-        key: _form,
+        key: ctrl.form,
         child: TextFormField(
           textInputAction: TextInputAction.done,
-          initialValue: _newPlayer ? '' : widget.player!.name,
+          initialValue: isNewPlayer ? '' : player!.name,
           decoration: InputDecoration(
-            labelText: appLocal.playerName,
+            labelText: AppLocal.playerName,
           ),
           validator: (value) {
             if (value == null || value.length < 2) {
-              return appLocal.tooShort;
+              return AppLocal.tooShort;
             }
-            if (_playerController.players.firstWhereOrNull(
+            if (ctrl.currentPlayers.firstWhereOrNull(
                     (p) => p.name.toLowerCase() == value.toLowerCase()) !=
                 null) {
-              if (_newPlayer ||
-                  widget.player!.name.toLowerCase() != value.toLowerCase()) {
-                return appLocal.alreadyUsed;
+              if (isNewPlayer ||
+                  player!.name.toLowerCase() != value.toLowerCase()) {
+                return AppLocal.alreadyUsed;
               }
             }
             return null;
           },
-          onChanged: (value) => _input = value,
-          onFieldSubmitted: (_) => _newPlayer ? _addPlayer() : _renamePlayer(),
+          onSaved: (value) => ctrl.data = value!,
+          onFieldSubmitted: (_) =>
+              isNewPlayer ? ctrl.addPlayer() : ctrl.renamePlayer(player!),
         ),
       ),
       actions: [
         TextButton(
-          onPressed: _newPlayer ? _addPlayer : _renamePlayer,
+          onPressed: isNewPlayer
+              ? () => ctrl.addPlayer()
+              : () => ctrl.renamePlayer(player!),
           child: const Text('Ok'),
         ),
         TextButton(
           onPressed: Get.back,
-          child: Text(appLocal.cancel),
+          child: Text(AppLocal.cancel),
         ),
       ],
     );
-  }
-
-  Future<void> _addPlayer() async {
-    if (!_form.currentState!.validate()) {
-      return;
-    }
-    _form.currentState!.save();
-    await _playerController.addPlayer(Player(_input));
-    Get.back();
-  }
-
-  Future<void> _renamePlayer() async {
-    if (!_form.currentState!.validate()) {
-      return;
-    }
-    _form.currentState!.save();
-    await _playerController.renamePlayer(widget.player!.name, Player(_input));
-    Get.back();
   }
 }

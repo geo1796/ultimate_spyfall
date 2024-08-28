@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:ultimate_spyfall/app_local/app_local.dart';
 
 import '../../shared/my_app_bar.dart';
 import '../../shared/my_drawer.dart';
@@ -12,17 +12,16 @@ class PlayersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appLocal = AppLocalizations.of(context)!;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async => await showDialog(
-            context: context, builder: (_) => const EditPlayerDialog(null)),
+            context: context, builder: (_) => const EditPlayerDialog()),
         child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
       ),
-      appBar: myAppBar(context, appLocal.players),
+      appBar: myAppBar(context, AppLocal.players),
       drawer: const MyDrawer(),
       body: const PlayersList(),
     );

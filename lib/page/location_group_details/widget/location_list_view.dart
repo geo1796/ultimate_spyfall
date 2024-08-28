@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/locations_controller.dart';
+import '../../../controller/location_controller.dart';
 import 'dismissible_location_list_tile.dart';
-import 'location_list_tile.dart';
+import 'location_list.dart';
 
 class LocationListView extends StatelessWidget {
   const LocationListView(this.groupName, {super.key});
@@ -11,9 +11,9 @@ class LocationListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LocationsController locationsController = Get.find();
+    final LocationController locationsController = Get.find();
     return Obx(() {
-      final locationGroup = locationsController.locationGroups
+      final locationGroup = locationsController.groups
           .firstWhere((lg) => lg.name == groupName);
       return ListView(
         children: [
@@ -24,7 +24,7 @@ class LocationListView extends StatelessWidget {
                         locationGroup: locationGroup,
                         location: locationGroup.locations[i],
                       )
-                  : (i) => LocationListTile(
+                  : (i) => LocationTile(
                         locationGroup: locationGroup,
                         location: locationGroup.locations[i],
                       )),

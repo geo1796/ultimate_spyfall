@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/locations_controller.dart';
+import '../../../controller/location_controller.dart';
 import '../../../model/location_group.dart';
 import '../../location_group_details/location_group_details_page.dart';
 
-class LocationGroupListTile extends StatelessWidget {
-  const LocationGroupListTile(this.locationGroup, {super.key});
+class LocationGroupTile extends StatelessWidget {
+  const LocationGroupTile(this.locationGroup, {super.key});
   final LocationGroup locationGroup;
 
   @override
   Widget build(BuildContext context) {
-    final LocationsController locationsController = Get.find();
+    final LocationController locationsController = Get.find();
     return Card(
       elevation: 6,
       child: ListTile(

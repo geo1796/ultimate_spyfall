@@ -23,6 +23,7 @@ class PlayerListTile extends StatelessWidget {
   }
 
   Future<void> _onEditPlayer(BuildContext ctx) async {
-    await showDialog(context: ctx, builder: (_) => EditPlayerDialog(player));
+    await showDialog(
+        context: ctx, builder: (_) => EditPlayerDialog(player: player));
   }
 }

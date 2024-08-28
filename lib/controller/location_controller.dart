@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import '../model/location_group.dart';
 import '../service/locations_service.dart';
 
-class LocationsController extends GetxController {
+class LocationController extends GetxController {
   final LocationsService _locationsService = Get.find();
+  
   var setupCompleted = false;
-  final locationGroups = <LocationGroup>[].obs;
+
+  final groups = <LocationGroup>[].obs;
   final currentGroup = Rxn<LocationGroup>(null);
 
   @override
@@ -14,7 +16,7 @@ class LocationsController extends GetxController {
     final storedLocations = await _locationsService.getAll();
     if (storedLocations.isNotEmpty) {
       setupCompleted = true;
-      locationGroups.value = storedLocations;
+      groups.value = storedLocations;
       currentGroup.value = await _locationsService.getCurrent();
     }
     super.onInit();
@@ -29,22 +31,22 @@ class LocationsController extends GetxController {
   }
 
   Future<void> _setupFrLocations() async {
-    locationGroups.add(frDefaultLocationGroup);
+    groups.add(frDefaultLocationGroup);
     await _locationsService.setAll([frDefaultLocationGroup]);
     currentGroup.value = frDefaultLocationGroup;
     await _locationsService.setCurrent(frDefaultLocationGroup);
   }
 
   Future<void> _setupEnLocations() async {
-    locationGroups.add(enDefaultLocationGroup);
+    groups.add(enDefaultLocationGroup);
     await _locationsService.setAll([enDefaultLocationGroup]);
     currentGroup.value = enDefaultLocationGroup;
     await _locationsService.setCurrent(enDefaultLocationGroup);
   }
 
   Future<void> addLocationGroup(LocationGroup locationGroup) async {
-    locationGroups.add(locationGroup);
-    await _locationsService.setAll(locationGroups);
+    groups.add(locationGroup);
+    await _locationsService.setAll(groups);
   }
 
   Future<void> setCurrent(LocationGroup locationGroup) async {
@@ -54,8 +56,8 @@ class LocationsController extends GetxController {
 
   Future<void> editLocationGroup(
       String oldName, LocationGroup locationGroup) async {
-    final index = locationGroups.indexWhere((l) => l.name == oldName);
-    locationGroups[index] = locationGroup;
-    await _locationsService.setAll(locationGroups);
+    final index = groups.indexWhere((l) => l.name == oldName);
+    groups[index] = locationGroup;
+    await _locationsService.setAll(groups);
   }
 }

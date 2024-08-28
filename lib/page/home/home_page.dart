@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
-import '../../controller/locations_controller.dart';
+import '../../controller/location_controller.dart';
 import '../../shared/my_app_bar.dart';
 import '../../shared/my_drawer.dart';
 
@@ -12,10 +11,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appLocal = AppLocalizations.of(context)!;
-    final LocationsController locationsController = Get.find();
+    final LocationController locationsController = Get.find();
     if (!locationsController.setupCompleted) {
-      locationsController.setupDefaultLocations(appLocal.localeName);
+      locationsController
+          .setupDefaultLocations(Get.deviceLocale?.languageCode ?? '');
     }
     return Scaffold(
       appBar: myAppBar(context, 'Ultimate Spyfall'),

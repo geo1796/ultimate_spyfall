@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../model/location_group.dart';
 import 'edit_location_dialog.dart';
 
-class LocationListTile extends StatelessWidget {
-  const LocationListTile({
+class LocationTile extends StatelessWidget {
+  const LocationTile({
     super.key,
     required this.locationGroup,
     required this.location,
@@ -23,10 +23,7 @@ class LocationListTile extends StatelessWidget {
             icon: const Icon(Icons.edit),
             onPressed: () async => await showDialog(
                 context: context,
-                builder: (_) => EditLocationDialog(
-                      location: location,
-                      locationGroup: locationGroup,
-                    ))),
+                builder: (_) => EditLocationDialog(location: location))),
       ),
     );
   }
