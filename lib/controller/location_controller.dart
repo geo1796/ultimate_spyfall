@@ -5,7 +5,7 @@ import '../service/locations_service.dart';
 
 class LocationController extends GetxController {
   final LocationsService _locationsService = Get.find();
-  
+
   var setupCompleted = false;
 
   final groups = <LocationGroup>[].obs;
@@ -13,19 +13,18 @@ class LocationController extends GetxController {
 
   @override
   void onInit() async {
+    super.onInit();
     final storedLocations = await _locationsService.getAll();
     if (storedLocations.isNotEmpty) {
       setupCompleted = true;
       groups.value = storedLocations;
       currentGroup.value = await _locationsService.getCurrent();
     }
-    super.onInit();
   }
 
   Future<void> setupDefaultLocations(String localeName) async {
-    if (setupCompleted) {
-      return;
-    }
+    if (setupCompleted) return;
+
     localeName == 'fr' ? await _setupFrLocations() : await _setupEnLocations();
     setupCompleted = true;
   }

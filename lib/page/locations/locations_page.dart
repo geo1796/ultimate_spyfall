@@ -16,10 +16,7 @@ class LocationsPage extends StatelessWidget {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () => Get.toNamed(LocationGroupFormPage.route),
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
+          child: const Icon(Icons.add),
         ),
         appBar: myAppBar(context, AppLocal.locations),
         drawer: const MyDrawer(),

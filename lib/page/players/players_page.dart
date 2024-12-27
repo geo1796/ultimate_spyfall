@@ -16,10 +16,7 @@ class PlayersPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () async => await showDialog(
             context: context, builder: (_) => const EditPlayerDialog()),
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
+        child: const Icon(Icons.add),
       ),
       appBar: myAppBar(context, AppLocal.players),
       drawer: const MyDrawer(),

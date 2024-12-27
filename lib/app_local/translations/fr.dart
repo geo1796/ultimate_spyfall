@@ -9,4 +9,7 @@ const Map<String, String> fr = {
   "cancel": "Annuler",
   "newLocationGroup": "Nouvelle liste",
   "location": "Lieu",
+  "spyCount": "Nombre d'espions",
+  "prankMode": "Mode prank",
+  "coopSpies": "Espions coopératifs",
 };

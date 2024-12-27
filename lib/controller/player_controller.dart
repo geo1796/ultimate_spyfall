@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
-
-import '../model/player.dart';
-import '../service/player_service.dart';
+import 'package:ultimate_spyfall/model/player.dart';
+import 'package:ultimate_spyfall/service/player_service.dart';
 
 class PlayerController extends GetxController {
   final PlayerService _playerService = Get.find();
@@ -9,13 +8,13 @@ class PlayerController extends GetxController {
 
   @override
   void onInit() async {
+    super.onInit();
     var storedPlayers = await _playerService.getAll();
     if (storedPlayers.isEmpty) {
       await _playerService.setAll(defaultPlayers);
       storedPlayers = defaultPlayers;
     }
     players.value = storedPlayers;
-    super.onInit();
   }
 
   Future<void> removePlayer(Player player) async {

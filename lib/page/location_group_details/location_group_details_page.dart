@@ -16,10 +16,7 @@ class LocationGroupDetailsPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () async => await showDialog(
             context: context, builder: (_) => const EditLocationDialog()),
-        child: const Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
+        child: const Icon(Icons.add),
       ),
       appBar: myAppBar(context, locationGroup.name, withDrawer: false),
       body: LocationListView(locationGroup.name),

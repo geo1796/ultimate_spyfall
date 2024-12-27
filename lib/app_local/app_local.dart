@@ -1,23 +1,29 @@
 import 'package:get/get.dart';
 
-class AppLocal {
-  static final home = 'home'.tr;
+abstract class AppLocal {
+  static get home => 'home'.tr;
 
-  static final players = 'players'.tr;
+  static get players => 'players'.tr;
 
-  static final locations = 'locations'.tr;
+  static get locations => 'locations'.tr;
 
-  static final settings = 'settings'.tr;
+  static get settings => 'settings'.tr;
 
-  static final playerName = 'playerName'.tr;
+  static get playerName => 'playerName'.tr;
 
-  static final tooShort = 'tooShort'.tr;
+  static get tooShort => 'tooShort'.tr;
 
-  static final alreadyUsed = 'alreadyUsed'.tr;
+  static get alreadyUsed => 'alreadyUsed'.tr;
 
-  static final cancel = 'cancel'.tr;
+  static get cancel => 'cancel'.tr;
 
-  static final newLocationGroup = 'newLocationGroup'.tr;
+  static get newLocationGroup => 'newLocationGroup'.tr;
 
-  static final location = 'location'.tr;
+  static get location => 'location'.tr;
+
+  static get spyCount => 'spyCount'.tr;
+
+  static get prankMode => 'prankMode'.tr;
+
+  static get coopSpies => 'coopSpies'.tr;
 }
