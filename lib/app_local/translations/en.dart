@@ -17,4 +17,7 @@ const Map<String, String> en = {
   "play": "Play",
   "spy": "Spy",
   "prankChances": "Prank chances",
+  "revealSpies": "Reveal spies",
+  "seeLocations": "See locations",
+  "restart": "Restart",
 };

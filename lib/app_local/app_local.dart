@@ -38,4 +38,10 @@ abstract class AppLocal {
   static get spy => 'spy'.tr;
 
   static get prankChances => 'prankChances'.tr;
+
+  static get revealSpies => 'revealSpies'.tr;
+
+  static get seeLocations => 'seeLocations'.tr;
+
+  static get restart => 'restart'.tr;
 }

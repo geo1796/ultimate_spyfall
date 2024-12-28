@@ -14,6 +14,7 @@ class GameController extends GetxController {
   final _locationCtrl = Get.find<LocationController>();
   final _settingsCtrl = Get.find<SettingsController>();
 
+  final spiesRevealed = false.obs;
   late final List<Player> spies;
   late final String location;
   late final bool isPrank;
