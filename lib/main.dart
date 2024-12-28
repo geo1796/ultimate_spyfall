@@ -4,7 +4,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:ultimate_spyfall/app_local/translations/my_translations.dart';
+import 'package:ultimate_spyfall/bindings/random_int_generator.dart';
 import 'package:ultimate_spyfall/controller/settings_controller.dart';
+import 'package:ultimate_spyfall/page/game/bindings/game_bindings.dart';
+import 'package:ultimate_spyfall/page/game/game_page.dart';
 import 'package:ultimate_spyfall/page/location_group_details/bindings/location_group_details_page_bindings.dart';
 import 'package:ultimate_spyfall/page/location_group_form/bindings/location_group_form_page_bindings.dart';
 import 'package:ultimate_spyfall/page/players/bindings/players_page_bindings.dart';
@@ -41,6 +44,8 @@ void main() async {
   Get.put(SettingsController());
 
   Get.put(ThemeController());
+
+  Get.put(RandomIntGenerator());
 
   runApp(const MyApp());
 }
@@ -82,6 +87,11 @@ class MyApp extends StatelessWidget {
           name: LocationGroupDetailsPage.route,
           page: () => const LocationGroupDetailsPage(),
           binding: LocationGroupDetailsPageBindings(),
+        ),
+        GetPage(
+          name: GamePage.route,
+          page: () => const GamePage(),
+          binding: GameBindings(),
         ),
       ],
     );

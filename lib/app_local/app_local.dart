@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
 abstract class AppLocal {
+  static get localeName => Get.deviceLocale?.languageCode ?? 'en';
+
   static get home => 'home'.tr;
 
   static get players => 'players'.tr;
@@ -26,4 +28,10 @@ abstract class AppLocal {
   static get prankMode => 'prankMode'.tr;
 
   static get coopSpies => 'coopSpies'.tr;
+
+  static get fixedSpies => 'fixedSpies'.tr;
+
+  static get randomSpies => 'randomSpies'.tr;
+
+  static get play => 'play'.tr;
 }

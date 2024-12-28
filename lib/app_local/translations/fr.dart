@@ -12,4 +12,7 @@ const Map<String, String> fr = {
   "spyCount": "Nombre d'espions",
   "prankMode": "Mode prank",
   "coopSpies": "Espions coopératifs",
+  "fixedSpies": "Nombre d'espions fixe",
+  "randomSpies": "Nombre d'espions aléatoire",
+  "play": "Jouer",
 };

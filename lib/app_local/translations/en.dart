@@ -12,4 +12,7 @@ const Map<String, String> en = {
   "spyCount": "Spy count",
   "prankMode": "Prank mode",
   "coopSpies": "Co-op spies",
+  "fixedSpies": "Fixed spy count",
+  "randomSpies": "Random spy count",
+  "play": "Play",
 };

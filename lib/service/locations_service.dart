@@ -6,7 +6,7 @@ import 'package:ultimate_spyfall/model/location_group.dart';
 class LocationsService extends GetxService {
   final _box = Get.find<GetStorage>();
 
-  Future<List<LocationGroup>> getAll() async {
+  List<LocationGroup> get all {
     if (!_box.hasData(StorageKeys.locationGroups)) {
       return [];
     }
@@ -14,16 +14,14 @@ class LocationsService extends GetxService {
     return jsonLocations.map((jl) => LocationGroup.fromJson(jl)).toList();
   }
 
-  Future<void> setAll(List<LocationGroup> locationGroups) async {
-    await _box.write(StorageKeys.locationGroups,
+  set all(List<LocationGroup> locationGroups) {
+    _box.write(StorageKeys.locationGroups,
         locationGroups.map((l) => l.toJson()).toList());
   }
 
-  Future<LocationGroup> getCurrent() async {
-    return LocationGroup.fromJson(_box.read(StorageKeys.currentLocationGroup));
-  }
+  LocationGroup get selected =>
+      LocationGroup.fromJson(_box.read(StorageKeys.currentLocationGroup));
 
-  Future<void> setCurrent(LocationGroup locationGroup) async {
-    await _box.write(StorageKeys.currentLocationGroup, locationGroup.toJson());
-  }
+  set selected(LocationGroup locationGroup) =>
+      _box.write(StorageKeys.currentLocationGroup, locationGroup.toJson());
 }

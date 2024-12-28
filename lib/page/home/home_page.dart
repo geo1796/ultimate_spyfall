@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:ultimate_spyfall/shared/play_button.dart';
 
-import '../../controller/location_controller.dart';
 import '../../shared/my_app_bar.dart';
 import '../../shared/my_drawer.dart';
 
@@ -11,15 +10,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LocationController locationsController = Get.find();
-    if (!locationsController.setupCompleted) {
-      locationsController
-          .setupDefaultLocations(Get.deviceLocale?.languageCode ?? '');
-    }
     return Scaffold(
       appBar: myAppBar(context, 'Ultimate Spyfall'),
       drawer: const MyDrawer(),
-      body: const Placeholder(),
+      body: const Center(child: PlayButton()),
     );
   }
 }

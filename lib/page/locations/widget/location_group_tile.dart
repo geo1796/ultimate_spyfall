@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../controller/location_controller.dart';
-import '../../../model/location_group.dart';
-import '../../location_group_details/location_group_details_page.dart';
+import 'package:ultimate_spyfall/controller/location_controller.dart';
+import 'package:ultimate_spyfall/model/location_group.dart';
+import 'package:ultimate_spyfall/page/location_group_details/location_group_details_page.dart';
 
 class LocationGroupTile extends StatelessWidget {
   const LocationGroupTile(this.locationGroup, {super.key});
@@ -16,9 +15,9 @@ class LocationGroupTile extends StatelessWidget {
       elevation: 6,
       child: ListTile(
         leading: IconButton(
-          onPressed: () => locationsController.setCurrent(locationGroup),
+          onPressed: () => locationsController.selectLocationGroup(locationGroup),
           icon: Obx(() => Icon(
-              locationsController.currentGroup.value!.name == locationGroup.name
+              locationsController.selectedGroup.value.name == locationGroup.name
                   ? Icons.star
                   : Icons.star_border)),
         ),

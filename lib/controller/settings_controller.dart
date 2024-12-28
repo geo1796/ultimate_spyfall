@@ -9,23 +9,33 @@ class SettingsController extends GetxController {
   final _playerCtrl = Get.find<PlayerController>();
   final _settingsService = Get.find<SettingsService>();
 
-  late final RxInt spyCount;
+  late final RxInt fixedSpyCount;
   late final RxBool prankMode;
   late final RxBool coopSpies;
+  late final RxBool randomSpies;
+  late final RxInt maxSpyCount;
+  late final RxInt minSpyCount;
   late final StreamSubscription<List<Player>> _playersSub;
 
   @override
   void onInit() {
     super.onInit();
 
-    spyCount = _settingsService.spyCount.obs;
+    fixedSpyCount = _settingsService.fixedSpyCount.obs;
     prankMode = _settingsService.prankMode.obs;
     coopSpies = _settingsService.coopSpies.obs;
+    randomSpies = _settingsService.randomSpies.obs;
+    maxSpyCount = _settingsService.maxSpyCount.obs;
+    minSpyCount = _settingsService.minSpyCount.obs;
 
     _playersSub = _playerCtrl.players.listen((players) {
-      if (spyCount.value < _playerCtrl.players.length) return;
+      if (fixedSpyCount.value == players.length) {
+        decreaseFixedSpyCount();
+      }
 
-      decreaseSpyCount();
+      if (maxSpyCount.value == players.length) {
+        decreaseMaxSpyCount();
+      }
     });
   }
 
@@ -35,17 +45,51 @@ class SettingsController extends GetxController {
     super.onClose();
   }
 
-  void decreaseSpyCount() {
-    if (spyCount.value == 1) return;
+  void decreaseFixedSpyCount() {
+    if (fixedSpyCount.value == 1) return;
 
-    spyCount.value--;
-    _settingsService.spyCount = spyCount.value;
+    fixedSpyCount.value--;
+    _settingsService.fixedSpyCount = fixedSpyCount.value;
   }
 
-  void increaseSpyCount() {
-    if (spyCount.value + 1 == _playerCtrl.players.length) return;
+  void increaseFixedSpyCount() {
+    if (fixedSpyCount.value + 1 == _playerCtrl.players.length) return;
 
-    spyCount.value++;
-    _settingsService.spyCount = spyCount.value;
+    fixedSpyCount.value++;
+    _settingsService.fixedSpyCount = fixedSpyCount.value;
+  }
+
+  void decreaseMinSpyCount() {
+    if (minSpyCount.value == 0) return;
+
+    minSpyCount.value--;
+    _settingsService.minSpyCount = minSpyCount.value;
+  }
+
+  void increaseMinSpyCount() {
+    if (minSpyCount.value + 1 == maxSpyCount.value) {
+      if (maxSpyCount.value + 1 == _playerCtrl.players.length) return;
+      increaseMaxSpyCount();
+    }
+
+    minSpyCount.value++;
+    _settingsService.minSpyCount = minSpyCount.value;
+  }
+
+  void decreaseMaxSpyCount() {
+    if (maxSpyCount.value - 1 == minSpyCount.value) {
+      if (minSpyCount.value == 0) return;
+      decreaseMinSpyCount();
+    }
+
+    maxSpyCount.value--;
+    _settingsService.maxSpyCount = maxSpyCount.value;
+  }
+
+  void increaseMaxSpyCount() {
+    if (maxSpyCount.value + 1 == _playerCtrl.players.length) return;
+
+    maxSpyCount.value++;
+    _settingsService.maxSpyCount = maxSpyCount.value;
   }
 }
