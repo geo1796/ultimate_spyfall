@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ultimate_spyfall/app_local/app_local.dart';
-import 'package:ultimate_spyfall/controller/settings_controller.dart';
+import 'package:ultimate_spyfall/bindings/settings/settings_controller.dart';
 import 'package:ultimate_spyfall/page/settings/widget/fixed_spies_settings.dart';
 import 'package:ultimate_spyfall/page/settings/widget/random_spies_settings.dart';
 

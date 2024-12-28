@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ultimate_spyfall/app_local/app_local.dart';
-import 'package:ultimate_spyfall/controller/settings_controller.dart';
+import 'package:ultimate_spyfall/bindings/settings/settings_controller.dart';
 
 class PrankModeSettingsTile extends StatelessWidget {
   const PrankModeSettingsTile({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/controller/player_controller.dart';
+import 'package:ultimate_spyfall/bindings/player/player_controller.dart';
 import 'package:ultimate_spyfall/model/player.dart';
 
 class PlayersPageController {

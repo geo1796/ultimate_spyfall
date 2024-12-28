@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/controller/location_controller.dart';
+import 'package:ultimate_spyfall/bindings/location/location_controller.dart';
 import 'package:ultimate_spyfall/model/location_group.dart';
 import 'package:ultimate_spyfall/page/location_group_details/location_group_details_page.dart';
 

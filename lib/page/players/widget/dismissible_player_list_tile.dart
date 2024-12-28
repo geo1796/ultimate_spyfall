@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/player_controller.dart';
+import '../../../bindings/player/player_controller.dart';
 import '../../../model/player.dart';
 import 'player_list_tile.dart';
 

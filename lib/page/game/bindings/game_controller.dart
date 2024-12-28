@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:ultimate_spyfall/bindings/random_int_generator.dart';
+import 'package:ultimate_spyfall/bindings/misc/random_int_generator.dart';
 import 'package:ultimate_spyfall/constants/storage_keys.dart';
-import 'package:ultimate_spyfall/controller/location_controller.dart';
-import 'package:ultimate_spyfall/controller/player_controller.dart';
-import 'package:ultimate_spyfall/controller/settings_controller.dart';
+import 'package:ultimate_spyfall/bindings/location/location_controller.dart';
+import 'package:ultimate_spyfall/bindings/player/player_controller.dart';
+import 'package:ultimate_spyfall/bindings/settings/settings_controller.dart';
 import 'package:ultimate_spyfall/model/player.dart';
 
 class GameController extends GetxController {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/location_controller.dart';
+import '../../../bindings/location/location_controller.dart';
 import '../../../model/location_group.dart';
 import 'location_list.dart';
 

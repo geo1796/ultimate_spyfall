@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/location_controller.dart';
+import '../../../bindings/location/location_controller.dart';
 import 'location_group_tile.dart';
 
 class LocationGroupList extends StatelessWidget {

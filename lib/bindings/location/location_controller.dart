@@ -1,16 +1,16 @@
 import 'package:get/get.dart';
 import 'package:ultimate_spyfall/app_local/app_local.dart';
 import 'package:ultimate_spyfall/model/location_group.dart';
-import 'package:ultimate_spyfall/service/locations_service.dart';
+import 'package:ultimate_spyfall/bindings/location/location_service.dart';
 
 class LocationController extends GetxController {
-  final LocationsService _locationsService = Get.find();
+  final LocationService _locationsService = Get.find();
 
   late final RxList<LocationGroup> groups;
   late final Rx<LocationGroup> selectedGroup;
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
     _onInit();
   }

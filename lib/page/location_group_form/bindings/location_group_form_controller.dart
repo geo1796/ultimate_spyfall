@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/controller/location_controller.dart';
+import 'package:ultimate_spyfall/bindings/location/location_controller.dart';
 import 'package:ultimate_spyfall/model/location_group.dart';
 
 class LocationGroupFormController {

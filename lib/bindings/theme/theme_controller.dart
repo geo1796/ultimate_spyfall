@@ -4,11 +4,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:ultimate_spyfall/constants/storage_keys.dart';
 
 class ThemeController extends GetxController {
-  final mode = ThemeMode.light.obs;
   final _box = Get.find<GetStorage>();
+  
+  final mode = ThemeMode.light.obs;
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
 
     if (!_box.hasData(StorageKeys.darkMode)) return;

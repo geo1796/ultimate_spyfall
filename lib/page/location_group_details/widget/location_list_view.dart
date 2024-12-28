@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/location_controller.dart';
+import '../../../bindings/location/location_controller.dart';
 import 'dismissible_location_list_tile.dart';
 import 'location_list.dart';
 

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/controller/player_controller.dart';
+import 'package:ultimate_spyfall/bindings/player/player_controller.dart';
 import 'package:ultimate_spyfall/model/player.dart';
-import 'package:ultimate_spyfall/service/settings_service.dart';
+import 'package:ultimate_spyfall/bindings/settings/settings_service.dart';
 
 class SettingsController extends GetxController {
   final _playerCtrl = Get.find<PlayerController>();

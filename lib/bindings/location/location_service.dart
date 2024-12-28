@@ -3,7 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:ultimate_spyfall/constants/storage_keys.dart';
 import 'package:ultimate_spyfall/model/location_group.dart';
 
-class LocationsService extends GetxService {
+class LocationService {
   final _box = Get.find<GetStorage>();
 
   List<LocationGroup> get all {

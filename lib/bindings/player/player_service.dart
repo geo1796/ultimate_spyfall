@@ -3,7 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:ultimate_spyfall/constants/storage_keys.dart';
 import 'package:ultimate_spyfall/model/player.dart';
 
-class PlayerService extends GetxService {
+class PlayerService  {
   final _box = Get.find<GetStorage>();
 
   Future<List<Player>> getAll() async {
