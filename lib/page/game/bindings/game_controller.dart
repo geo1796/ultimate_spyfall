@@ -16,6 +16,8 @@ class GameController extends GetxController {
 
   late final List<Player> spies;
   late final String location;
+  late final bool isPrank;
+  final playerChecks = <Player, RxBool>{};
 
   String get _previousLocation =>
       _box.read<String>(StorageKeys.previousLocation) ?? '';
@@ -26,12 +28,39 @@ class GameController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    _initPrankMode();
     _initSpies();
     _initLocation();
   }
 
+  void _initPrankMode() {
+    if (_settingsCtrl.prankMode.isFalse) {
+      isPrank = false;
+      return;
+    }
+
+    if (_randomIntGenerator
+        .randomInRange(0, 100)
+        .isGreaterThan(_settingsCtrl.prankModeChance.value)) {
+      isPrank = false;
+    } else {
+      isPrank = true;
+    }
+  }
+
   void _initSpies() {
     final players = [..._playerCtrl.players];
+
+    for (Player p in players) {
+      playerChecks[p] = false.obs;
+    }
+
+    if (isPrank) {
+      spies = players;
+      return;
+    }
+
     players.shuffle();
 
     late final int spyCount;
@@ -47,6 +76,11 @@ class GameController extends GetxController {
   }
 
   void _initLocation() {
+    if (isPrank) {
+      location = '';
+      return;
+    }
+
     final allLocations = [..._locationCtrl.selectedGroup.value.locations];
 
     do {
@@ -55,5 +89,27 @@ class GameController extends GetxController {
 
     location = allLocations[0];
     _previousLocation = location;
+  }
+
+  bool isSpy(Player player) {
+    return spies.contains(player);
+  }
+
+  List<Player> getDummySpiesForPrankMode(Player player) {
+    final players = [..._playerCtrl.players.where((other) => other != player)];
+    players.shuffle();
+
+    late final int spyCount;
+
+    if (_settingsCtrl.randomSpies.isTrue) {
+      spyCount = _randomIntGenerator.randomInRange(
+              _settingsCtrl.minSpyCount.value,
+              _settingsCtrl.maxSpyCount.value) -
+          1;
+    } else {
+      spyCount = _settingsCtrl.fixedSpyCount.value - 1;
+    }
+
+    return [player, ...players.getRange(0, spyCount)];
   }
 }

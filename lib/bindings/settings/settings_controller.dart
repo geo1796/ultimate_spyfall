@@ -15,7 +15,9 @@ class SettingsController extends GetxController {
   late final RxBool randomSpies;
   late final RxInt maxSpyCount;
   late final RxInt minSpyCount;
+  late final RxInt prankModeChance;
   late final StreamSubscription<List<Player>> _playersSub;
+  late final StreamSubscription<int> _prankModeChanceSub;
 
   @override
   void onInit() {
@@ -27,6 +29,7 @@ class SettingsController extends GetxController {
     randomSpies = _settingsService.randomSpies.obs;
     maxSpyCount = _settingsService.maxSpyCount.obs;
     minSpyCount = _settingsService.minSpyCount.obs;
+    prankModeChance = _settingsService.prankModeChance.obs;
 
     _playersSub = _playerCtrl.players.listen((players) {
       if (fixedSpyCount.value == players.length) {
@@ -37,11 +40,14 @@ class SettingsController extends GetxController {
         decreaseMaxSpyCount();
       }
     });
+
+    _prankModeChanceSub = prankModeChance.listen((newValue) => _settingsService.prankModeChance = newValue);
   }
 
   @override
   void onClose() {
     _playersSub.cancel();
+    _prankModeChanceSub.cancel();
     super.onClose();
   }
 

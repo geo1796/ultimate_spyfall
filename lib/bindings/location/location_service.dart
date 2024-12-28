@@ -19,9 +19,14 @@ class LocationService {
         locationGroups.map((l) => l.toJson()).toList());
   }
 
-  LocationGroup get selected =>
-      LocationGroup.fromJson(_box.read(StorageKeys.currentLocationGroup));
+  LocationGroup? get selected {
+    final data = _box.read(StorageKeys.selectedLocationGroup);
 
-  set selected(LocationGroup locationGroup) =>
-      _box.write(StorageKeys.currentLocationGroup, locationGroup.toJson());
+    if (data == null) return null;
+
+    return LocationGroup.fromJson(data);
+  }
+
+  void saveSelectedLocationGroup(LocationGroup locationGroup) =>
+      _box.write(StorageKeys.selectedLocationGroup, locationGroup.toJson());
 }

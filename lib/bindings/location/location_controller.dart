@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:ultimate_spyfall/app_local/app_local.dart';
 import 'package:ultimate_spyfall/model/location_group.dart';
@@ -8,6 +10,13 @@ class LocationController extends GetxController {
 
   late final RxList<LocationGroup> groups;
   late final Rx<LocationGroup> selectedGroup;
+  late final StreamSubscription<LocationGroup> _selectedGroupSub;
+
+  @override
+  void onClose() {
+    _selectedGroupSub.cancel();
+    super.onClose();
+  }
 
   @override
   void onInit() {
@@ -19,12 +28,23 @@ class LocationController extends GetxController {
     final storedLocations = _locationsService.all;
 
     if (storedLocations.isEmpty) {
-      setupDefaultLocations(AppLocal.localeName);
+      await setupDefaultLocations(AppLocal.localeName);
       return;
     }
 
     groups = storedLocations.obs;
-    selectedGroup = _locationsService.selected.obs;
+
+    final previousSelectedGroup = _locationsService.selected;
+
+    if (previousSelectedGroup == null) {
+      selectedGroup = groups[0].obs;
+    } else {
+      selectedGroup = previousSelectedGroup.obs;
+    }
+
+    _selectedGroupSub = selectedGroup.listen((newValue) {
+      _locationsService.saveSelectedLocationGroup(newValue);
+    });
   }
 
   Future<void> setupDefaultLocations(String localeName) async {
@@ -32,19 +52,17 @@ class LocationController extends GetxController {
   }
 
   Future<void> _setupFrLocations() async {
-    groups.add(frDefaultLocationGroup);
+    groups = [frDefaultLocationGroup].obs;
     _locationsService.all = [frDefaultLocationGroup];
 
-    selectedGroup.value = frDefaultLocationGroup;
-    _locationsService.selected = frDefaultLocationGroup;
+    selectedGroup = frDefaultLocationGroup.obs;
   }
 
   Future<void> _setupEnLocations() async {
-    groups.add(enDefaultLocationGroup);
+    groups = [enDefaultLocationGroup].obs;
     _locationsService.all = [enDefaultLocationGroup];
 
-    selectedGroup.value = enDefaultLocationGroup;
-    _locationsService.selected = enDefaultLocationGroup;
+    selectedGroup = enDefaultLocationGroup.obs;
   }
 
   Future<void> addLocationGroup(LocationGroup locationGroup) async {
@@ -54,7 +72,6 @@ class LocationController extends GetxController {
 
   Future<void> selectLocationGroup(LocationGroup locationGroup) async {
     selectedGroup.value = locationGroup;
-    _locationsService.selected = locationGroup;
   }
 
   Future<void> editLocationGroup(

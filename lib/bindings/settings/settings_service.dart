@@ -6,7 +6,8 @@ class SettingsService {
   final _box = Get.find<GetStorage>();
 
   int get fixedSpyCount => _box.read<int>(StorageKeys.fixedSpyCount) ?? 1;
-  set fixedSpyCount(int newValue) => _box.write(StorageKeys.fixedSpyCount, newValue);
+  set fixedSpyCount(int newValue) =>
+      _box.write(StorageKeys.fixedSpyCount, newValue);
 
   bool get prankMode => _box.read<bool>(StorageKeys.prankMode) ?? false;
   set prankMode(bool newValue) => _box.write(StorageKeys.prankMode, newValue);
@@ -25,4 +26,8 @@ class SettingsService {
   int get minSpyCount => _box.read<int>(StorageKeys.minSpyCount) ?? 1;
   set minSpyCount(int newValue) =>
       _box.write(StorageKeys.minSpyCount, newValue);
+
+  int get prankModeChance => _box.read<int>(StorageKeys.prankModeChance) ?? 20;
+  set prankModeChance(int newValue) =>
+      _box.write(StorageKeys.prankModeChance, newValue);
 }

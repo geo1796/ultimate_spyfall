@@ -15,4 +15,6 @@ const Map<String, String> fr = {
   "fixedSpies": "Nombre d'espions fixe",
   "randomSpies": "Nombre d'espions aléatoire",
   "play": "Jouer",
+  "spy": "Espion",
+  "prankChances": "Chances de prank",
 };
