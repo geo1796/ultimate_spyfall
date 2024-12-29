@@ -19,6 +19,9 @@ class GameController extends GetxController {
   late final String location;
   late final bool isPrank;
   final playerChecks = <Player, RxBool>{};
+  final locationChecks = <String, RxBool>{};
+
+  late final String previousLocation;
 
   String get _previousLocation =>
       _box.read<String>(StorageKeys.previousLocation) ?? '';
@@ -32,7 +35,7 @@ class GameController extends GetxController {
 
     _initPrankMode();
     _initSpies();
-    _initLocation();
+    _initLocations();
   }
 
   void _initPrankMode() {
@@ -76,13 +79,19 @@ class GameController extends GetxController {
     spies = players.getRange(0, spyCount).toList();
   }
 
-  void _initLocation() {
+  void _initLocations() {
+    previousLocation = _previousLocation;
+
+    final allLocations = [..._locationCtrl.selectedGroup.value.locations];
+
+    for (String location in allLocations) {
+      locationChecks[location] = false.obs;
+    }
+
     if (isPrank) {
       location = '';
       return;
     }
-
-    final allLocations = [..._locationCtrl.selectedGroup.value.locations];
 
     do {
       allLocations.shuffle();
