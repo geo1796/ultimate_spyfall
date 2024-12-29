@@ -20,4 +20,5 @@ const Map<String, String> en = {
   "revealSpies": "Reveal spies",
   "seeLocations": "See locations",
   "restart": "Restart",
+  "spies": "Spies",
 };

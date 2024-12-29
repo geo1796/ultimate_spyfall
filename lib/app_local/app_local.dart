@@ -44,4 +44,6 @@ abstract class AppLocal {
   static get seeLocations => 'seeLocations'.tr;
 
   static get restart => 'restart'.tr;
+
+  static get spies => 'spies'.tr;
 }

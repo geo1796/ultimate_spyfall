@@ -25,19 +25,32 @@ class PlayerCheckBottomSheet extends StatelessWidget {
   Widget get _locationWidget => Center(child: Text(_gameCtrl.location));
 
   Widget get _spyWidget {
-    if (_settingsCtrl.coopSpies.isTrue) {
-      late final List<Player> spies;
-
-      if (_settingsCtrl.prankMode.isTrue) {
-        spies = _gameCtrl.getDummySpiesForPrankMode(player);
-      } else {
-        spies = _gameCtrl.spies;
-      }
-
-      return Column(
-          children: List.generate(spies.length, (i) => Text(spies[i].name)));
+    if (_settingsCtrl.coopSpies.isFalse) {
+      return Center(child: Text(AppLocal.spy));
     }
 
-    return Center(child: Text(AppLocal.spy));
+    late final List<Player> spies;
+
+    if (_gameCtrl.isPrank) {
+      spies = _gameCtrl.getDummySpiesForPrankMode(player);
+    } else {
+      spies = _gameCtrl.spies;
+    }
+
+    return Column(children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          AppLocal.spies,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+      ...List.generate(
+          spies.length,
+          (i) => Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(spies[i].name),
+              ))
+    ]);
   }
 }

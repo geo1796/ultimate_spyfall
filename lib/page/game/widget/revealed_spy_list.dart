@@ -17,7 +17,7 @@ class RevealedSpyList extends StatelessWidget {
     return ListView.builder(
       itemCount: spies.length,
       itemBuilder: (_, i) => Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(4.0),
         child: Center(child: Text(spies[i].name)),
       ),
     );
