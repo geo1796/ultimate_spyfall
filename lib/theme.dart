@@ -10,6 +10,10 @@ final lightTheme = ThemeData(
   ),
   appBarTheme:
       const AppBarTheme(color: secondaryColor, foregroundColor: primaryColor),
+  inputDecorationTheme: const InputDecorationTheme(
+    labelStyle: TextStyle(color: secondaryColor),
+    focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: secondaryColor)),
+  ),
   switchTheme: SwitchThemeData(
     thumbColor: const WidgetStatePropertyAll(primaryColor),
     trackColor:
@@ -42,6 +46,10 @@ final darkTheme = ThemeData(
   ),
   appBarTheme:
       const AppBarTheme(color: primaryColor, foregroundColor: secondaryColor),
+  inputDecorationTheme: const InputDecorationTheme(
+    labelStyle: TextStyle(color: primaryColor),
+    focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primaryColor)),
+  ),
   switchTheme: SwitchThemeData(
     thumbColor: const WidgetStatePropertyAll(secondaryColor),
     trackColor:

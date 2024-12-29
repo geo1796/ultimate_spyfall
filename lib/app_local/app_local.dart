@@ -46,4 +46,8 @@ abstract class AppLocal {
   static get restart => 'restart'.tr;
 
   static get spies => 'spies'.tr;
+
+  static get listName => 'listName'.tr;
+
+  static get submit => 'submit'.tr;
 }

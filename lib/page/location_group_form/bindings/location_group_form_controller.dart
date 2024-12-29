@@ -10,12 +10,11 @@ class LocationGroupFormController {
 
   List<LocationGroup> get currentGroups => _locationsController.groups;
 
-  Future<void> onSubmit() async {
-    if (!form.currentState!.validate()) {
-      return;
-    }
+  void onSubmit() {
+    if (!form.currentState!.validate()) return;
     form.currentState!.save();
-    await _locationsController.addLocationGroup(newGroup);
+    
+    _locationsController.addLocationGroup(newGroup);
     Get.back();
   }
 }

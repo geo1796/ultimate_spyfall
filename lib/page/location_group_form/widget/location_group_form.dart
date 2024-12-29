@@ -8,28 +8,29 @@ class LocationGroupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.find<LocationGroupFormController>();
+    final formCtrl = Get.find<LocationGroupFormController>();
     return SingleChildScrollView(
       child: Column(
         children: [
-          IconButton(onPressed: ctrl.onSubmit, icon: const Icon(Icons.save)),
+          IconButton(
+              onPressed: formCtrl.onSubmit, icon: const Icon(Icons.save)),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Form(
-                key: ctrl.form,
+                key: formCtrl.form,
                 child: ListView(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
                     TextFormField(
-                      decoration: const InputDecoration(labelText: 'List name'),
+                      decoration: InputDecoration(labelText: AppLocal.listName),
                       textInputAction: TextInputAction.next,
-                      onSaved: (value) => ctrl.newGroup.name = value!,
+                      onSaved: (value) => formCtrl.newGroup.name = value!,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return AppLocal.tooShort;
                         }
-                        for (final g in ctrl.currentGroups) {
+                        for (final g in formCtrl.currentGroups) {
                           if (g.name == value) {
                             return AppLocal.alreadyUsed;
                           }
@@ -41,20 +42,20 @@ class LocationGroupForm extends StatelessWidget {
                         10,
                         (i) => TextFormField(
                               decoration: InputDecoration(
-                                  labelText: 'Location ${i + 1}'),
+                                  labelText: '${AppLocal.location} ${i + 1}'),
                               textInputAction: i == 10
                                   ? TextInputAction.done
                                   : TextInputAction.next,
                               onChanged: (value) =>
-                                  ctrl.newGroup.locations[i] = value,
+                                  formCtrl.newGroup.locations[i] = value,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return AppLocal.tooShort;
                                 }
                                 for (var y = 0;
-                                    y < ctrl.newGroup.locations.length;
+                                    y < formCtrl.newGroup.locations.length;
                                     y++) {
-                                  if (ctrl.newGroup.locations[y] == value &&
+                                  if (formCtrl.newGroup.locations[y] == value &&
                                       y != i) {
                                     return AppLocal.alreadyUsed;
                                   }

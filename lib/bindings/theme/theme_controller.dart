@@ -7,6 +7,8 @@ class ThemeController extends GetxController {
   final _box = Get.find<GetStorage>();
   
   final mode = ThemeMode.light.obs;
+  
+  bool get isDark => mode.value == ThemeMode.dark;
 
   @override
   void onInit() {
@@ -18,8 +20,6 @@ class ThemeController extends GetxController {
 
     if (darkMode) mode.value = ThemeMode.dark;
   }
-
-  bool get isDark => mode.value == ThemeMode.dark;
 
   void toggleTheme() {
     if (mode.value == ThemeMode.dark) {

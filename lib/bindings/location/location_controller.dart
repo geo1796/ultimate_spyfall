@@ -24,11 +24,11 @@ class LocationController extends GetxController {
     _onInit();
   }
 
-  void _onInit() async {
+  void _onInit() {
     final storedLocations = _locationsService.all;
 
     if (storedLocations.isEmpty) {
-      await setupDefaultLocations(AppLocal.localeName);
+      setupDefaultLocations(AppLocal.localeName);
       return;
     }
 
@@ -47,39 +47,50 @@ class LocationController extends GetxController {
     });
   }
 
-  Future<void> setupDefaultLocations(String localeName) async {
-    localeName == 'fr' ? await _setupFrLocations() : await _setupEnLocations();
+  void setupDefaultLocations(String localeName) {
+    localeName == 'fr' ? _setupFrLocations() : _setupEnLocations();
   }
 
-  Future<void> _setupFrLocations() async {
+  void _setupFrLocations() {
     groups = [frDefaultLocationGroup].obs;
     _locationsService.all = [frDefaultLocationGroup];
 
     selectedGroup = frDefaultLocationGroup.obs;
   }
 
-  Future<void> _setupEnLocations() async {
+  void _setupEnLocations() {
     groups = [enDefaultLocationGroup].obs;
     _locationsService.all = [enDefaultLocationGroup];
 
     selectedGroup = enDefaultLocationGroup.obs;
   }
 
-  Future<void> addLocationGroup(LocationGroup locationGroup) async {
+  void addLocationGroup(LocationGroup locationGroup) {
     groups.add(locationGroup);
     _locationsService.all = groups;
   }
 
-  Future<void> selectLocationGroup(LocationGroup locationGroup) async {
+  void selectLocationGroup(LocationGroup locationGroup) {
     selectedGroup.value = locationGroup;
   }
 
-  Future<void> editLocationGroup(
-      String oldName, LocationGroup locationGroup) async {
+  void editLocationGroup(String oldName, LocationGroup locationGroup) {
     final index = groups.indexWhere((l) => l.name == oldName);
 
     groups[index] = locationGroup;
 
     _locationsService.all = groups;
+
+    if (oldName == selectedGroup.value.name) {
+      selectedGroup.value = locationGroup;
+    }
   }
+
+  void deleteLocationGroup(LocationGroup locationGroup) {
+    groups.remove(locationGroup);
+    _locationsService.all = groups;
+  }
+
+  LocationGroup getGroupByName(String groupName) =>
+      groups.firstWhere((g) => g.name == groupName);
 }

@@ -25,7 +25,7 @@ class LocationGroupTile extends StatelessWidget {
         trailing: IconButton(
           icon: const Icon(Icons.edit),
           onPressed: () => Get.toNamed(LocationGroupDetailsPage.route,
-              arguments: locationGroup),
+              arguments: locationGroup.name),
         ),
       ),
     );

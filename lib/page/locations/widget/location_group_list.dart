@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ultimate_spyfall/page/locations/widget/dismissible_location_group_tile.dart';
 
 import '../../../bindings/location/location_controller.dart';
-import 'location_group_tile.dart';
 
 class LocationGroupList extends StatelessWidget {
   const LocationGroupList({super.key});
@@ -13,6 +13,6 @@ class LocationGroupList extends StatelessWidget {
     final locationGroups = locationsController.groups;
     return Obx(() => ListView.builder(
         itemCount: locationGroups.length,
-        itemBuilder: (_, i) => LocationGroupTile(locationGroups[i])));
+        itemBuilder: (_, i) => DismissibleLocationGroupTile(locationGroups[i])));
   }
 }

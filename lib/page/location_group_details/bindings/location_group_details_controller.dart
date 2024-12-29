@@ -4,39 +4,58 @@ import 'package:ultimate_spyfall/bindings/location/location_controller.dart';
 import 'package:ultimate_spyfall/model/location_group.dart';
 
 class LocationGroupDetailsController extends GetxController {
-  final _locationsController = Get.find<LocationController>();
+  final _locationCtrl = Get.find<LocationController>();
   final form = GlobalKey<FormState>();
 
-  late final LocationGroup group;
+  late final Rx<LocationGroup> group;
 
-  var data = '';
+  var locationData = '';
+  var groupData = '';
 
-  @override
-  void onInit() {
-    super.onInit();
-    group = Get.arguments as LocationGroup;
+  LocationGroupDetailsController(LocationGroup group) {
+    this.group = group.obs;
   }
 
-  Future<void> addLocation() async {
-    if (!form.currentState!.validate()) {
-      return;
-    }
+  void renameGroup() {
+    if (!form.currentState!.validate()) return;
     form.currentState!.save();
-    final editedGroup = LocationGroup(group.name,
-        locations: List.of([...group.locations, data]));
-    await _locationsController.editLocationGroup(group.name, editedGroup);
+
+    final editedGroup =
+        LocationGroup(groupData, locations: group.value.locations);
+
+    _locationCtrl.editLocationGroup(group.value.name, editedGroup);
+
+    group.value = editedGroup;
+
     Get.back();
   }
 
-  Future<void> editLocation(String location) async {
-    if (!form.currentState!.validate()) {
-      return;
-    }
+  void addLocation() {
+    if (!form.currentState!.validate()) return;
     form.currentState!.save();
-    final editedGroup = LocationGroup.copy(group);
+
+    final editedGroup = LocationGroup(group.value.name,
+        locations: List.of([...group.value.locations, locationData]));
+
+    _locationCtrl.editLocationGroup(group.value.name, editedGroup);
+
+    group.value = editedGroup;
+
+    Get.back();
+  }
+
+  void editLocation(String location) {
+    if (!form.currentState!.validate()) return;
+    form.currentState!.save();
+
+    final editedGroup = LocationGroup.copy(group.value);
+
     final index = editedGroup.locations.indexWhere((l) => l == location);
-    editedGroup.locations[index] = data;
-    await _locationsController.editLocationGroup(group.name, editedGroup);
+
+    editedGroup.locations[index] = locationData;
+
+    _locationCtrl.editLocationGroup(group.value.name, editedGroup);
+
     Get.back();
   }
 }

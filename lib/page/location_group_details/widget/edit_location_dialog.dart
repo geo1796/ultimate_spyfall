@@ -27,7 +27,7 @@ class EditLocationDialog extends StatelessWidget {
             if (value == null || value.length < 2) {
               return AppLocal.tooShort;
             }
-            if (ctrl.group.locations.firstWhereOrNull(
+            if (ctrl.group.value.locations.firstWhereOrNull(
                     (l) => l.toLowerCase() == value.toLowerCase()) !=
                 null) {
               if (isNewLocation ||
@@ -37,7 +37,7 @@ class EditLocationDialog extends StatelessWidget {
             }
             return null;
           },
-          onSaved: (value) => ctrl.data = value!,
+          onSaved: (value) => ctrl.locationData = value!,
           onFieldSubmitted: (_) =>
               isNewLocation ? ctrl.addLocation() : ctrl.editLocation(location!),
         ),

@@ -21,4 +21,6 @@ const Map<String, String> en = {
   "seeLocations": "See locations",
   "restart": "Restart",
   "spies": "Spies",
+  "listName": "List name",
+  "submit": "Submit"
 };

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../bindings/location/location_controller.dart';
 import '../../../model/location_group.dart';
-import 'location_list.dart';
+import 'location_tile.dart';
 
 class DismissibleLocationListTile extends StatelessWidget {
   const DismissibleLocationListTile({
@@ -22,18 +22,14 @@ class DismissibleLocationListTile extends StatelessWidget {
         background: Container(
           padding: const EdgeInsets.only(right: 16.0),
           alignment: Alignment.centerRight,
-          child: Icon(
-            Icons.delete,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+          child: const Icon(Icons.delete),
         ),
         onDismissed: (_) async {
-          final LocationController locationsController = Get.find();
+          final locationCtrl = Get.find<LocationController>();
           final editedGroup = LocationGroup(locationGroup.name, locations: [
             ...locationGroup.locations.where((l) => l != location)
           ]);
-          await locationsController.editLocationGroup(
-              locationGroup.name, editedGroup);
+          locationCtrl.editLocationGroup(locationGroup.name, editedGroup);
         },
         child: LocationTile(
           location: location,
