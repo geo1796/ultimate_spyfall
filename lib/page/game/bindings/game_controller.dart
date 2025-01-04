@@ -109,15 +109,15 @@ class GameController extends GetxController {
     final players = [..._playerCtrl.players.where((other) => other != player)];
     players.shuffle();
 
-    late final int spyCount;
+    int spyCount = 0;
 
     if (_settingsCtrl.randomSpies.isTrue) {
-      spyCount = _randomIntGenerator.randomInRange(
-          _settingsCtrl.minSpyCount.value, _settingsCtrl.maxSpyCount.value - 1);
+      spyCount += _randomIntGenerator.randomInRange(
+          _settingsCtrl.minSpyCount.value, _settingsCtrl.maxSpyCount.value);
     } else {
-      spyCount = _settingsCtrl.fixedSpyCount.value - 1;
+      spyCount += _settingsCtrl.fixedSpyCount.value;
     }
 
-    return [player, ...players.getRange(0, spyCount)];
+    return [player, ...players.getRange(0, spyCount < 1 ? 0 : spyCount - 1)];
   }
 }
