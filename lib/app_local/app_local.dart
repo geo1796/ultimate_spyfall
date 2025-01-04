@@ -41,7 +41,7 @@ abstract class AppLocal {
 
   static get revealSpies => 'revealSpies'.tr;
 
-  static get seeLocations => 'seeLocations'.tr;
+  static get showLocations => 'showLocations'.tr;
 
   static get restart => 'restart'.tr;
 
@@ -50,4 +50,10 @@ abstract class AppLocal {
   static get listName => 'listName'.tr;
 
   static get submit => 'submit'.tr;
+
+  static get showSettings => 'showSettings'.tr;
+
+  static get no => 'no'.tr;
+
+  static get yes => 'yes'.tr;
 }

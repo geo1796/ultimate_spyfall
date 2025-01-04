@@ -18,9 +18,12 @@ const Map<String, String> fr = {
   "spy": "Espion",
   "prankChances": "Chances de prank",
   "revealSpies": "Révéler les espions",
-  "seeLocations": "Voir les lieux",
+  "showLocations": "Voir les lieux",
   "restart": "Recommencer",
   "spies": "Espions",
   "listName": "Nom de la liste",
-  "submit": "Valider"
+  "submit": "Valider",
+  "showSettings": "Voir les paramètres",
+  "no": "Non",
+  "yes": "Oui",
 };

@@ -37,20 +37,22 @@ class PlayerCheckBottomSheet extends StatelessWidget {
       spies = _gameCtrl.spies;
     }
 
-    return Column(children: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          AppLocal.spies,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+    return SingleChildScrollView(
+      child: Column(children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            AppLocal.spies,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
-      ),
-      ...List.generate(
-          spies.length,
-          (i) => Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Text(spies[i].name),
-              ))
-    ]);
+        ...List.generate(
+            spies.length,
+            (i) => Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(spies[i].name),
+                ))
+      ]),
+    );
   }
 }

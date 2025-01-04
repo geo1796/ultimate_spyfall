@@ -18,9 +18,12 @@ const Map<String, String> en = {
   "spy": "Spy",
   "prankChances": "Prank chances",
   "revealSpies": "Reveal spies",
-  "seeLocations": "See locations",
+  "showLocations": "Show locations",
   "restart": "Restart",
   "spies": "Spies",
   "listName": "List name",
-  "submit": "Submit"
+  "submit": "Submit",
+  "showSettings": "Show settings",
+  "no": "No",
+  "yes": "Yes",
 };
