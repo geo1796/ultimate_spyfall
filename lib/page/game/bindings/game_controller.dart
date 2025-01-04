@@ -113,9 +113,7 @@ class GameController extends GetxController {
 
     if (_settingsCtrl.randomSpies.isTrue) {
       spyCount = _randomIntGenerator.randomInRange(
-              _settingsCtrl.minSpyCount.value,
-              _settingsCtrl.maxSpyCount.value) -
-          1;
+          _settingsCtrl.minSpyCount.value, _settingsCtrl.maxSpyCount.value - 1);
     } else {
       spyCount = _settingsCtrl.fixedSpyCount.value - 1;
     }
