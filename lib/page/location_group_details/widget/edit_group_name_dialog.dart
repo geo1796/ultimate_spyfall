@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/bindings/location/location_controller.dart';
 import 'package:ultimate_spyfall/page/location_group_details/bindings/location_group_details_controller.dart';
 
@@ -16,7 +16,7 @@ class EditGroupNameDialog extends StatelessWidget {
     final group = _detailsCtrl.group;
 
     return AlertDialog(
-      title: Text(AppLocal.listName),
+      title: Text(AppLocale.listName),
       content: Form(
         key: _detailsCtrl.form,
         child: TextFormField(
@@ -28,12 +28,12 @@ class EditGroupNameDialog extends StatelessWidget {
             if (group.value.name == value) return null;
 
             if (value == null || value.isEmpty) {
-              return AppLocal.tooShort;
+              return AppLocale.tooShort;
             }
 
             for (final g in _locationCtrl.groups) {
               if (g.name == value) {
-                return AppLocal.alreadyUsed;
+                return AppLocale.alreadyUsed;
               }
             }
             return null;
@@ -41,9 +41,9 @@ class EditGroupNameDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text(AppLocal.cancel)),
+        TextButton(onPressed: Get.back, child: Text(AppLocale.cancel)),
         TextButton(
-            onPressed: _detailsCtrl.renameGroup, child: Text(AppLocal.submit)),
+            onPressed: _detailsCtrl.renameGroup, child: Text(AppLocale.submit)),
       ],
     );
   }

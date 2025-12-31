@@ -26,4 +26,7 @@ const Map<String, String> en = {
   "showSettings": "Show settings",
   "no": "No",
   "yes": "Yes",
+  "import": "Import",
+  "export": "Export",
+  "anErrorOccurred": "An error occurred"
 };

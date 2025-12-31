@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/bindings/settings/settings_controller.dart';
 import 'package:ultimate_spyfall/page/settings/widget/fixed_spies_settings.dart';
 import 'package:ultimate_spyfall/page/settings/widget/random_spies_settings.dart';
@@ -16,10 +16,10 @@ class SpyCountSettingsTile extends StatelessWidget {
       children: [
         Obx(() {
           if (_settingsCtrl.randomSpies.isTrue) {
-            return Text(AppLocal.randomSpies);
+            return Text(AppLocale.randomSpies);
           }
 
-          return Text(AppLocal.fixedSpies);
+          return Text(AppLocale.fixedSpies);
         }),
         Obx(() => Switch(
               value: _settingsCtrl.randomSpies.value,

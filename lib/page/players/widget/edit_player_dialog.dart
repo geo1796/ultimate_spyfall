@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/page/players/bindings/players_page_controller.dart';
 
 import '../../../model/player.dart';
@@ -24,18 +24,18 @@ class EditPlayerDialog extends StatelessWidget {
           textInputAction: TextInputAction.done,
           initialValue: isNewPlayer ? '' : player!.name,
           decoration: InputDecoration(
-            labelText: AppLocal.playerName,
+            labelText: AppLocale.playerName,
           ),
           validator: (value) {
             if (value == null || value.length < 2) {
-              return AppLocal.tooShort;
+              return AppLocale.tooShort;
             }
             if (ctrl.currentPlayers.firstWhereOrNull(
                     (p) => p.name.toLowerCase() == value.toLowerCase()) !=
                 null) {
               if (isNewPlayer ||
                   player!.name.toLowerCase() != value.toLowerCase()) {
-                return AppLocal.alreadyUsed;
+                return AppLocale.alreadyUsed;
               }
             }
             return null;
@@ -54,7 +54,7 @@ class EditPlayerDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: Get.back,
-          child: Text(AppLocal.cancel),
+          child: Text(AppLocale.cancel),
         ),
       ],
     );

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-abstract class AppLocal {
+abstract class AppLocale {
   static get localeName => Get.deviceLocale?.languageCode ?? 'en';
 
   static get home => 'home'.tr;
@@ -56,4 +56,10 @@ abstract class AppLocal {
   static get no => 'no'.tr;
 
   static get yes => 'yes'.tr;
+
+  static get import => 'import'.tr;
+
+  static get export => 'export'.tr;
+
+  static get anErrorOccurred => 'anErrorOccurred'.tr;
 }

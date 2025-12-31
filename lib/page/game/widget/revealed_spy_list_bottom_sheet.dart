@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/page/game/bindings/game_controller.dart';
 
 class RevealedSpyListBottomSheet extends StatelessWidget {
@@ -12,7 +12,7 @@ class RevealedSpyListBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     if (_gameCtrl.isPrank) {
       return Image.asset(
-        AppLocal.localeName == 'fr'
+        AppLocale.localeName == 'fr'
             ? 'assets/prank_fr.png'
             : 'assets/prank_en.png',
       );

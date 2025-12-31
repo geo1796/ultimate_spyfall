@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/bindings/settings/settings_controller.dart';
 import 'package:ultimate_spyfall/model/player.dart';
 import 'package:ultimate_spyfall/page/game/bindings/game_controller.dart';
@@ -26,7 +26,7 @@ class PlayerCheckBottomSheet extends StatelessWidget {
 
   Widget get _spyWidget {
     if (_settingsCtrl.coopSpies.isFalse) {
-      return Center(child: Text(AppLocal.spy));
+      return Center(child: Text(AppLocale.spy));
     }
 
     late final List<Player> spies;
@@ -42,7 +42,7 @@ class PlayerCheckBottomSheet extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            AppLocal.spies,
+            AppLocale.spies,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),

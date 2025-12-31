@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/shared/play_button.dart';
 
 import '../page/home/home_page.dart';
@@ -26,25 +26,25 @@ class MyDrawer extends StatelessWidget {
         ),
         ListTile(
           leading: const Icon(Icons.home),
-          title: Text(AppLocal.home),
+          title: Text(AppLocale.home),
           onTap: () => Get.offAllNamed(HomePage.route),
         ),
         const Divider(),
         ListTile(
           leading: const Icon(Icons.person_add),
-          title: Text(AppLocal.players),
+          title: Text(AppLocale.players),
           onTap: () => Get.offAllNamed(PlayersPage.route),
         ),
         const Divider(),
         ListTile(
           leading: const Icon(Icons.place),
-          title: Text(AppLocal.locations),
+          title: Text(AppLocale.locations),
           onTap: () => Get.offAllNamed(LocationsPage.route),
         ),
         const Divider(),
         ListTile(
           leading: const Icon(Icons.settings),
-          title: Text(AppLocal.settings),
+          title: Text(AppLocale.settings),
           onTap: () => Get.offAllNamed(SettingsPage.route),
         ),
         const Divider(),

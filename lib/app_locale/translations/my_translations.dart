@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/translations/en.dart';
-import 'package:ultimate_spyfall/app_local/translations/fr.dart';
+import 'package:ultimate_spyfall/app_locale/translations/en.dart';
+import 'package:ultimate_spyfall/app_locale/translations/fr.dart';
 
 class MyTranslations extends Translations {
   @override

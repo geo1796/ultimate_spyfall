@@ -24,6 +24,13 @@ class LocationGroup {
   factory LocationGroup.copy(LocationGroup original) {
     return LocationGroup(original.name, locations: original.locations);
   }
+
+  LocationGroup copyWith({String? name}) {
+    return LocationGroup(
+      name ?? this.name,
+      locations: locations,
+    );
+  }
 }
 
 final enDefaultLocationGroup = LocationGroup(

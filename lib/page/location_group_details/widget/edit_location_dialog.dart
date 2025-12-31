@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/page/location_group_details/bindings/location_group_details_controller.dart';
 
 class EditLocationDialog extends StatelessWidget {
@@ -22,17 +22,17 @@ class EditLocationDialog extends StatelessWidget {
         child: TextFormField(
           textInputAction: TextInputAction.done,
           initialValue: location ?? '',
-          decoration: InputDecoration(labelText: AppLocal.location),
+          decoration: InputDecoration(labelText: AppLocale.location),
           validator: (value) {
             if (value == null || value.length < 2) {
-              return AppLocal.tooShort;
+              return AppLocale.tooShort;
             }
             if (ctrl.group.value.locations.firstWhereOrNull(
                     (l) => l.toLowerCase() == value.toLowerCase()) !=
                 null) {
               if (isNewLocation ||
                   location!.toLowerCase() != value.toLowerCase()) {
-                return AppLocal.alreadyUsed;
+                return AppLocale.alreadyUsed;
               }
             }
             return null;
@@ -51,7 +51,7 @@ class EditLocationDialog extends StatelessWidget {
         ),
         TextButton(
           onPressed: Get.back,
-          child: Text(AppLocal.cancel),
+          child: Text(AppLocale.cancel),
         ),
       ],
     );

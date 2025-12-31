@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/page/settings/widget/coop_spies_settings_tile.dart';
 import 'package:ultimate_spyfall/page/settings/widget/prank_mode_settings_tile.dart';
 import 'package:ultimate_spyfall/page/settings/widget/spy_count_settings_tile.dart';
@@ -13,7 +13,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(context, AppLocal.settings),
+      appBar: myAppBar(context, AppLocale.settings),
       drawer: const MyDrawer(),
       body: const SingleChildScrollView(
           child: Column(children: [

@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
-import 'package:ultimate_spyfall/model/location_group.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/bindings/location/location_service.dart';
+import 'package:ultimate_spyfall/model/location_group.dart';
 
 class LocationController extends GetxController {
   final LocationService _locationsService = Get.find();
@@ -28,7 +30,7 @@ class LocationController extends GetxController {
     final storedLocations = _locationsService.all;
 
     if (storedLocations.isEmpty) {
-      setupDefaultLocations(AppLocal.localeName);
+      setupDefaultLocations(AppLocale.localeName);
       return;
     }
 
@@ -93,4 +95,44 @@ class LocationController extends GetxController {
 
   LocationGroup getGroupByName(String groupName) =>
       groups.firstWhere((g) => g.name == groupName);
+
+  Future<void> exportLocations() async {
+    final bytes = utf8.encode(const JsonEncoder.withIndent('  ').convert(
+      {'locationGroups': groups.map((g) => g.toJson()).toList()},
+    ));
+
+    final now = DateTime.now();
+
+    await FilePicker.platform.saveFile(
+      dialogTitle: AppLocale.export,
+      fileName: 'spyfall_${now.day}-${now.month}-${now.year}.json',
+      type: FileType.custom,
+      allowedExtensions: ['json'],
+      bytes: bytes,
+    );
+  }
+
+  Future<void> importLocations() async {
+    final pick = await FilePicker.platform.pickFiles(
+      dialogTitle: AppLocale.import,
+      type: FileType.custom,
+      allowedExtensions: ['json'],
+      withData: true,
+    );
+
+    if (pick == null || pick.files.length != 1) return;
+
+    final bytes = await pick.files[0].xFile.readAsBytes();
+
+    final json = jsonDecode(utf8.decode(bytes)) as Map<String, dynamic>;
+
+    for (LocationGroup import in (json['locationGroups'] as List<dynamic>)
+        .map((j) => LocationGroup.fromJson(j))
+        .toList()) {
+      while (groups.where((g) => g.name == import.name).isNotEmpty) {
+        import = import.copyWith(name: '${import.name}*');
+      }
+      addLocationGroup(import);
+    }
+  }
 }

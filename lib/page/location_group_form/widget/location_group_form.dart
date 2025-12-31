@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/page/location_group_form/bindings/location_group_form_controller.dart';
 
 class LocationGroupForm extends StatelessWidget {
@@ -23,16 +23,17 @@ class LocationGroupForm extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
                     TextFormField(
-                      decoration: InputDecoration(labelText: AppLocal.listName),
+                      decoration:
+                          InputDecoration(labelText: AppLocale.listName),
                       textInputAction: TextInputAction.next,
                       onSaved: (value) => formCtrl.newGroup.name = value!,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return AppLocal.tooShort;
+                          return AppLocale.tooShort;
                         }
                         for (final g in formCtrl.currentGroups) {
                           if (g.name == value) {
-                            return AppLocal.alreadyUsed;
+                            return AppLocale.alreadyUsed;
                           }
                         }
                         return null;
@@ -42,7 +43,7 @@ class LocationGroupForm extends StatelessWidget {
                         10,
                         (i) => TextFormField(
                               decoration: InputDecoration(
-                                  labelText: '${AppLocal.location} ${i + 1}'),
+                                  labelText: '${AppLocale.location} ${i + 1}'),
                               textInputAction: i == 10
                                   ? TextInputAction.done
                                   : TextInputAction.next,
@@ -50,14 +51,14 @@ class LocationGroupForm extends StatelessWidget {
                                   formCtrl.newGroup.locations[i] = value,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return AppLocal.tooShort;
+                                  return AppLocale.tooShort;
                                 }
                                 for (var y = 0;
                                     y < formCtrl.newGroup.locations.length;
                                     y++) {
                                   if (formCtrl.newGroup.locations[y] == value &&
                                       y != i) {
-                                    return AppLocal.alreadyUsed;
+                                    return AppLocale.alreadyUsed;
                                   }
                                 }
                                 return null;

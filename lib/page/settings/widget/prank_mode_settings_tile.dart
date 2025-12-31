@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/bindings/settings/settings_controller.dart';
 
 class PrankModeSettingsTile extends StatefulWidget {
@@ -26,7 +26,7 @@ class _PrankModeSettingsTileState extends State<PrankModeSettingsTile> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Text(AppLocal.prankMode),
+      Text(AppLocale.prankMode),
       Obx(() => Switch(
             value: _settingsCtrl.prankMode.value,
             onChanged: (newValue) => _settingsCtrl.prankMode.value = newValue,
@@ -40,7 +40,7 @@ class _PrankModeSettingsTileState extends State<PrankModeSettingsTile> {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(AppLocal.prankChances),
+              child: Text(AppLocale.prankChances),
             ),
             SizedBox(
               height: 120,

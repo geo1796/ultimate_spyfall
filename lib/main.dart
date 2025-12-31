@@ -3,20 +3,21 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:ultimate_spyfall/app_local/translations/my_translations.dart';
+import 'package:ultimate_spyfall/app_locale/translations/my_translations.dart';
 import 'package:ultimate_spyfall/bindings/misc/random_int_generator.dart';
 import 'package:ultimate_spyfall/bindings/settings/settings_controller.dart';
+import 'package:ultimate_spyfall/bindings/settings/settings_service.dart';
 import 'package:ultimate_spyfall/page/game/bindings/game_bindings.dart';
 import 'package:ultimate_spyfall/page/game/game_page.dart';
 import 'package:ultimate_spyfall/page/location_group_details/bindings/location_group_details_page_bindings.dart';
 import 'package:ultimate_spyfall/page/location_group_form/bindings/location_group_form_page_bindings.dart';
 import 'package:ultimate_spyfall/page/players/bindings/players_page_bindings.dart';
-import 'package:ultimate_spyfall/bindings/settings/settings_service.dart';
 import 'package:ultimate_spyfall/theme.dart';
 
+import 'bindings/location/location_controller.dart';
+import 'bindings/location/location_service.dart';
 import 'bindings/player/player_controller.dart';
 import 'bindings/player/player_service.dart';
-import 'bindings/location/location_controller.dart';
 import 'bindings/theme/theme_controller.dart';
 import 'page/home/home_page.dart';
 import 'page/location_group_details/location_group_details_page.dart';
@@ -24,7 +25,6 @@ import 'page/location_group_form/location_group_form_page.dart';
 import 'page/locations/locations_page.dart';
 import 'page/players/players_page.dart';
 import 'page/settings/settings_page.dart';
-import 'bindings/location/location_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,6 +58,7 @@ class MyApp extends StatelessWidget {
     final ThemeController themeController = Get.find();
 
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -77,7 +78,10 @@ class MyApp extends StatelessWidget {
           page: () => const PlayersPage(),
           binding: PlayersPageBindings(),
         ),
-        GetPage(name: LocationsPage.route, page: () => const LocationsPage()),
+        GetPage(
+          name: LocationsPage.route,
+          page: () => const LocationsPage(),
+        ),
         GetPage(
           name: LocationGroupFormPage.route,
           page: () => const LocationGroupFormPage(),

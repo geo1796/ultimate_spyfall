@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 
 import '../../shared/my_app_bar.dart';
 import '../../shared/my_drawer.dart';
@@ -18,7 +18,7 @@ class PlayersPage extends StatelessWidget {
             context: context, builder: (_) => const EditPlayerDialog()),
         child: const Icon(Icons.add),
       ),
-      appBar: myAppBar(context, AppLocal.players),
+      appBar: myAppBar(context, AppLocale.players),
       drawer: const MyDrawer(),
       body: const PlayersList(),
     );

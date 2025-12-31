@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/bindings/settings/settings_controller.dart';
 import 'package:ultimate_spyfall/page/game/bindings/game_controller.dart';
 import 'package:ultimate_spyfall/page/game/widget/location_check_wrap.dart';
@@ -26,12 +26,12 @@ class GamePage extends StatelessWidget {
           const PlayerList(),
           const SizedBox(height: 16),
           Builder(builder: (_) {
-            String text = '${AppLocal.coopSpies}: ';
+            String text = '${AppLocale.coopSpies}: ';
 
             if (_settingsCtrl.coopSpies.isTrue) {
-              text += AppLocal.yes;
+              text += AppLocale.yes;
             } else {
-              text += AppLocal.no;
+              text += AppLocale.no;
             }
 
             return Text(text,
@@ -39,7 +39,7 @@ class GamePage extends StatelessWidget {
           }),
           const SizedBox(height: 8),
           Builder(builder: (_) {
-            String text = '${AppLocal.spyCount}: ';
+            String text = '${AppLocale.spyCount}: ';
 
             if (_settingsCtrl.randomSpies.isTrue) {
               text +=
@@ -63,19 +63,19 @@ class GamePage extends StatelessWidget {
                     context: context,
                     builder: (_) => const RevealedSpyListBottomSheet());
               },
-              child: Text(AppLocal.revealSpies),
+              child: Text(AppLocale.revealSpies),
             );
           }),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () => showModalBottomSheet(
                 context: context, builder: (_) => const LocationCheckWrap()),
-            child: Text(AppLocal.showLocations),
+            child: Text(AppLocale.showLocations),
           ),
           const SizedBox(height: 64),
           ElevatedButton(
               onPressed: () => Get.offAllNamed(route),
-              child: Text(AppLocal.restart)),
+              child: Text(AppLocale.restart)),
         ])));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 
 import '../../shared/my_app_bar.dart';
 import 'widget/location_group_form.dart';
@@ -11,7 +11,7 @@ class LocationGroupFormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: myAppBar(context, AppLocal.newLocationGroup, withDrawer: false),
+      appBar: myAppBar(context, AppLocale.newLocationGroup, withDrawer: false),
       body: const LocationGroupForm(),
     );
   }

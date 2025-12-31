@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_spyfall/app_local/app_local.dart';
+import 'package:ultimate_spyfall/app_locale/app_locale.dart';
 import 'package:ultimate_spyfall/bindings/settings/settings_controller.dart';
 
 class CoopSpiesSettingsTile extends StatelessWidget {
@@ -11,7 +11,7 @@ class CoopSpiesSettingsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Text(AppLocal.coopSpies),
+      Text(AppLocale.coopSpies),
       Obx(() => Switch(
             value: _settingsCtrl.coopSpies.value,
             onChanged: (newValue) => _settingsCtrl.coopSpies.value = newValue,

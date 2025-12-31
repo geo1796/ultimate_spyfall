@@ -26,4 +26,7 @@ const Map<String, String> fr = {
   "showSettings": "Voir les paramètres",
   "no": "Non",
   "yes": "Oui",
+  "import": "Importer",
+  "export": "Exporter",
+  "anErrorOccurred": "Une erreur est survenue"
 };
